@@ -1,23 +1,33 @@
-import { useState } from "react";
+import React, { Component } from "react";
 
-function App() {
-  const [count, setCount] = useState(0);
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
 
-  const handleIncrement = () => {
-    setCount((prevCount) => prevCount + 1);
+  handleIncrement = () => {
+    this.setState((prevState) => ({
+      count: prevState.count + 1,
+    }));
   };
-  const handleDecrement = () => {
-    setCount((prevCount) => prevCount - 1);
+
+  handleDecrement = () => {
+    this.setState((prevState) => ({ count: prevState.count - 1 }));
   };
 
-  return (
-    <>
-      <h1>Counter App</h1>
-      <p>Count: {count}</p>
-      <button onClick={handleIncrement}>Increment</button>
-      <button onClick={handleDecrement}>Decrement</button>
-    </>
-  );
+  render() {
+    return (
+      <>
+        <h1>Counter App</h1>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.handleIncrement}>Increment</button>
+        <button onClick={this.handleDecrement}>Decrement</button>
+      </>
+    );
+  }
 }
 
 export default App;
